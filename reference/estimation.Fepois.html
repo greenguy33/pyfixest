@@ -514,16 +514,16 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="pyfixest.estimation.Fepois.predict" class="level3">
 <h3 class="anchored" data-anchor-id="pyfixest.estimation.Fepois.predict">predict</h3>
-<p><code>estimation.Fepois.predict(newdata=None, atol=1e-06, btol=1e-06, type='link')</code></p>
+<p><code>estimation.Fepois.predict(newdata=None, atol=1e-06, btol=1e-06, type='link', compute_stdp=False)</code></p>
 <p>Return predicted values from regression model.</p>
 <p>Return a flat np.array with predicted values of the regression model. If new fixed effect levels are introduced in <code>newdata</code>, predicted values for such observations will be set to NaN.</p>
 <section id="parameters" class="level4">
 <h4 class="anchored" data-anchor-id="parameters">Parameters</h4>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 3%">
-<col style="width: 8%">
-<col style="width: 85%">
+<col style="width: 4%">
+<col style="width: 7%">
+<col style="width: 84%">
 <col style="width: 3%">
 </colgroup>
 <thead>
@@ -571,6 +571,12 @@ ul.task-list li input[type="checkbox"] {
 <td>Another stopping tolerance for scipy.sparse.linalg.lsqr(). See https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.lsqr.html</td>
 <td><code>1e-6</code></td>
 </tr>
+<tr class="odd">
+<td><code>compute_stdp</code></td>
+<td>bool</td>
+<td>Ignored, included to conform with method signature of feols.predict()</td>
+<td><code>False</code></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -589,8 +595,8 @@ ul.task-list li input[type="checkbox"] {
 </thead>
 <tbody>
 <tr class="odd">
-<td>np.ndarray</td>
-<td>A flat array with the predicted values of the regression model.</td>
+<td>pd.DataFrame</td>
+<td>Dataframe with columns “y_hat” with predicted values from regression model</td>
 </tr>
 </tbody>
 </table>
