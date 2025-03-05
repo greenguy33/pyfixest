@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>pyfixest</title>
+<title>PyFixest on professional-tier GPUs</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,40 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -117,7 +83,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./pyfixest.html" aria-current="page"> 
+    <a class="nav-link" href="./pyfixest.html"> 
 <span class="menu-text">PyFixest</span></a>
   </li>  
   <li class="nav-item">
@@ -195,198 +161,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><code>PyFixest</code> on professional-tier GPUs</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<p><img src="figures/pyfixest-logo.png" class="img-fluid"></p>
-<section id="pyfixest-fast-high-dimensional-fixed-effects-regression-in-python" class="level1">
-<h1>PyFixest: Fast High-Dimensional Fixed Effects Regression in Python</h1>
-<p><a href="https://opensource.org/license/mit"><img src="https://img.shields.io/badge/License-MIT-green.svg" class="img-fluid" alt="License"></a> <img src="https://img.shields.io/badge/Python-3.9–3.12-blue" class="img-fluid" alt="Python Versions"> <a href="https://pypi.org/project/pyfixest/"><img src="https://img.shields.io/pypi/v/pyfixest.svg" class="img-fluid" alt="PyPI -Version"></a> <a href="https://codecov.io/gh/py-econometrics/pyfixest"><img src="https://codecov.io/gh/py-econometrics/pyfixest/branch/master/graph/badge.svg" class="img-fluid" alt="image"></a> <a href="https://github.com/py-econometrics/pyfixest/issues?q=is%3Aissue+is%3Aopen+label%3Abug"><img src="https://img.shields.io/github/issues/py-econometrics/pyfixest/bug?color=red&amp;label=Bugs.png" class="img-fluid" alt="Known Bugs"></a> <a href="https://github.com/py-econometrics/pyfixest/issues"><img src="https://img.shields.io/github/issues/py-econometrics/pyfixest.png" class="img-fluid" alt="File an Issue"></a> <a href="#contributors-"><img src="https://img.shields.io/badge/all_contributors-27-green.svg?style=flat-square" class="img-fluid" alt="All Contributors"></a> <a href="https://pepy.tech/project/pyfixest"><img src="https://static.pepy.tech/badge/pyfixest.png" class="img-fluid" alt="Downloads"></a> <a href="https://pepy.tech/project/pyfixest"><img src="https://static.pepy.tech/badge/pyfixest/month.png" class="img-fluid" alt="Downloads"></a> <a href="https://github.com/astral-sh/ruff"><img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json" class="img-fluid" alt="Ruff"></a> <a href="https://pixi.sh"><img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/prefix-dev/pixi/main/assets/badge/v0.json&amp;style=flat-square" class="img-fluid" alt="Pixi Badge"></a></p>
-<p><code>PyFixest</code> is a Python implementation of the formidable <a href="https://github.com/lrberge/fixest">fixest</a> package for fast high-dimensional fixed effects regression.</p>
-<p>The package aims to mimic <code>fixest</code> syntax and functionality as closely as Python allows: if you know <code>fixest</code> well, the goal is that you won’t have to read the docs to get started! In particular, this means that all of <code>fixest's</code> defaults are mirrored by <code>PyFixest</code> - currently with only <a href="https://github.com/py-econometrics/pyfixest/issues/260">one small exception</a>.</p>
-<p>Nevertheless, for a quick introduction, you can take a look at the <a href="https://py-econometrics.github.io/pyfixest/quickstart.html">quickstart</a> or the regression chapter of <a href="https://github.com/aeturrell">Arthur Turrell’s</a> book on <a href="https://aeturrell.github.io/coding-for-economists/econmt-regression.html#imports">Coding for Economists</a>.</p>
-<p>For questions on <code>PyFixest</code>, head on over to our <a href="https://github.com/py-econometrics/pyfixest/discussions">github discussions</a>.</p>
-<section id="features" class="level2">
-<h2 class="anchored" data-anchor-id="features">Features</h2>
-<ul>
-<li><strong>OLS</strong>, <strong>WLS</strong> and <strong>IV</strong> Regression with Fixed-Effects Demeaning via <a href="https://bookdown.org/ts_robinson1994/10EconometricTheorems/frisch.html">Frisch-Waugh-Lovell</a></li>
-<li><strong>Poisson Regression</strong> following the <a href="https://journals.sagepub.com/doi/full/10.1177/1536867X20909691">pplmhdfe algorithm</a></li>
-<li>Multiple Estimation Syntax</li>
-<li>Probit, Logit and Gaussian Family GLMs (currently without fixed effects demeaning, this is WIP)</li>
-<li>Several <strong>Robust</strong> and <strong>Cluster Robust Variance-Covariance</strong> Estimators</li>
-<li><strong>Wild Cluster Bootstrap</strong> Inference (via <a href="https://github.com/py-econometrics/wildboottest">wildboottest</a>)</li>
-<li><strong>Difference-in-Differences</strong> Estimators:
-<ul>
-<li>The canonical Two-Way Fixed Effects Estimator</li>
-<li><a href="https://jrgcmu.github.io/2sdd_current.pdf">Gardner’s two-stage (“<code>Did2s</code>”)</a> estimator</li>
-<li>Basic Versions of the Local Projections estimator following <a href="https://www.nber.org/papers/w31184">Dube et al (2023)</a></li>
-</ul></li>
-<li><strong>Multiple Hypothesis Corrections</strong> following the Procedure by <a href="https://journals.sagepub.com/doi/pdf/10.1177/1536867X20976314">Romano and Wolf</a> and <strong>Simultaneous Confidence Intervals</strong> using a <strong>Multiplier Bootstrap</strong></li>
-<li>The <strong>Causal Cluster Variance Estimator (CCV)</strong> following <a href="https://economics.mit.edu/sites/default/files/2022-09/When%20Should%20You%20Adjust%20Standard%20Errors%20for%20Clustering.pdf">Abadie et al.</a></li>
-<li>Regression <strong>Decomposition</strong> following <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1425737">Gelbach (2016)</a></li>
-<li><strong>Publication-ready tables</strong> with <a href="https://posit-dev.github.io/great-tables/articles/intro.html">Great Tables</a> or LaTex booktabs</li>
-</ul>
-</section>
-<section id="installation" class="level2">
-<h2 class="anchored" data-anchor-id="installation">Installation</h2>
-<p>You can install the release version from <code>PyPi</code> by running</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pip install <span class="op">-</span>U pyfixest</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>or the development version from github by running</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pip install git<span class="op">+</span>https:<span class="op">//</span>github.com<span class="op">/</span>py<span class="op">-</span>econometrics<span class="op">/</span>pyfixest.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="benchmarks" class="level2">
-<h2 class="anchored" data-anchor-id="benchmarks">Benchmarks</h2>
-<p>All benchmarks follow the <a href="https://github.com/lrberge/fixest/tree/master/_BENCHMARK">fixest benchmarks</a>. All non-pyfixest timings are taken from the <code>fixest</code> benchmarks.</p>
-<p><img src="figures/benchmarks_ols.svg" class="img-fluid"> <img src="figures/benchmarks_poisson.svg" class="img-fluid"></p>
-</section>
-<section id="quickstart" class="level2">
-<h2 class="anchored" data-anchor-id="quickstart">Quickstart</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyfixest <span class="im">as</span> pf</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pf.get_data()</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>pf.feols(<span class="st">"Y ~ X1 | f1 + f2"</span>, data<span class="op">=</span>data).summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre><code>###
-
-Estimation:  OLS
-Dep. var.: Y, Fixed effects: f1+f2
-Inference:  CRV1
-Observations:  997
-
-| Coefficient   |   Estimate |   Std. Error |   t value |   Pr(&gt;|t|) |   2.5% |   97.5% |
-|:--------------|-----------:|-------------:|----------:|-----------:|-------:|--------:|
-| X1            |     -0.919 |        0.065 |   -14.057 |      0.000 | -1.053 |  -0.786 |
----
-RMSE: 1.441   R2: 0.609   R2 Within: 0.2</code></pre>
-<section id="multiple-estimation" class="level3">
-<h3 class="anchored" data-anchor-id="multiple-estimation">Multiple Estimation</h3>
-<p>You can estimate multiple models at once by using <a href="https://aeturrell.github.io/coding-for-economists/econmt-regression.html#multiple-regression-models">multiple estimation syntax</a>:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># OLS Estimation: estimate multiple models at once</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>fit <span class="op">=</span> pf.feols(<span class="st">"Y + Y2 ~X1 | csw0(f1, f2)"</span>, data <span class="op">=</span> data, vcov <span class="op">=</span> {<span class="st">'CRV1'</span>:<span class="st">'group_id'</span>})</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the results</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>fit.etable()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre><code>                           est1               est2               est3               est4               est5               est6
-------------  -----------------  -----------------  -----------------  -----------------  -----------------  -----------------
-depvar                        Y                 Y2                  Y                 Y2                  Y                 Y2
-------------------------------------------------------------------------------------------------------------------------------
-Intercept      0.919*** (0.121)   1.064*** (0.232)
-X1            -1.000*** (0.117)  -1.322*** (0.211)  -0.949*** (0.087)  -1.266*** (0.212)  -0.919*** (0.069)  -1.228*** (0.194)
-------------------------------------------------------------------------------------------------------------------------------
-f2                            -                  -                  -                  -                  x                  x
-f1                            -                  -                  x                  x                  x                  x
-------------------------------------------------------------------------------------------------------------------------------
-R2                        0.123              0.037              0.437              0.115              0.609              0.168
-S.E. type          by: group_id       by: group_id       by: group_id       by: group_id       by: group_id       by: group_id
-Observations                998                999                997                998                997                998
-------------------------------------------------------------------------------------------------------------------------------
-Significance levels: * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001
-Format of coefficient cell:
-Coefficient (Std. Error)</code></pre>
-</section>
-<section id="adjust-standard-errors-on-the-fly" class="level3">
-<h3 class="anchored" data-anchor-id="adjust-standard-errors-on-the-fly">Adjust Standard Errors “on-the-fly”</h3>
-<p>Standard Errors can be adjusted after estimation, “on-the-fly”:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fit1 <span class="op">=</span> fit.fetch_model(<span class="dv">0</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>fit1.vcov(<span class="st">"hetero"</span>).summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre><code>Model:  Y~X1
-###
-
-Estimation:  OLS
-Dep. var.: Y
-Inference:  hetero
-Observations:  998
-
-| Coefficient   |   Estimate |   Std. Error |   t value |   Pr(&gt;|t|) |   2.5% |   97.5% |
-|:--------------|-----------:|-------------:|----------:|-----------:|-------:|--------:|
-| Intercept     |      0.919 |        0.112 |     8.223 |      0.000 |  0.699 |   1.138 |
-| X1            |     -1.000 |        0.082 |   -12.134 |      0.000 | -1.162 |  -0.838 |
----
-RMSE: 2.158   R2: 0.123</code></pre>
-</section>
-<section id="poisson-regression-via-fepois" class="level3">
-<h3 class="anchored" data-anchor-id="poisson-regression-via-fepois">Poisson Regression via <code>fepois()</code></h3>
-<p>You can estimate Poisson Regressions via the <code>fepois()</code> function:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>poisson_data <span class="op">=</span> pf.get_data(model <span class="op">=</span> <span class="st">"Fepois"</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>pf.fepois(<span class="st">"Y ~ X1 + X2 | f1 + f2"</span>, data <span class="op">=</span> poisson_data).summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre><code>###
-
-Estimation:  Poisson
-Dep. var.: Y, Fixed effects: f1+f2
-Inference:  CRV1
-Observations:  997
-
-| Coefficient   |   Estimate |   Std. Error |   t value |   Pr(&gt;|t|) |   2.5% |   97.5% |
-|:--------------|-----------:|-------------:|----------:|-----------:|-------:|--------:|
-| X1            |     -0.007 |        0.035 |    -0.190 |      0.850 | -0.075 |   0.062 |
-| X2            |     -0.015 |        0.010 |    -1.449 |      0.147 | -0.035 |   0.005 |
----
-Deviance: 1068.169</code></pre>
-</section>
-<section id="iv-estimation-via-three-part-formulas" class="level3">
-<h3 class="anchored" data-anchor-id="iv-estimation-via-three-part-formulas">IV Estimation via three-part formulas</h3>
-<p>Last, <code>PyFixest</code> also supports IV estimation via three part formula syntax:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>fit_iv <span class="op">=</span> pf.feols(<span class="st">"Y ~ 1 | f1 | X1 ~ Z1"</span>, data <span class="op">=</span> data)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>fit_iv.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre><code>###
-
-Estimation:  IV
-Dep. var.: Y, Fixed effects: f1
-Inference:  CRV1
-Observations:  997
-
-| Coefficient   |   Estimate |   Std. Error |   t value |   Pr(&gt;|t|) |   2.5% |   97.5% |
-|:--------------|-----------:|-------------:|----------:|-----------:|-------:|--------:|
-| X1            |     -1.025 |        0.115 |    -8.930 |      0.000 | -1.259 |  -0.790 |
----</code></pre>
-</section>
-</section>
-<section id="call-for-contributions" class="level2">
-<h2 class="anchored" data-anchor-id="call-for-contributions">Call for Contributions</h2>
-<p>Thanks for showing interest in contributing to <code>pyfixest</code>! We appreciate all contributions and constructive feedback, whether that be reporting bugs, requesting new features, or suggesting improvements to documentation.</p>
-<p>If you’d like to get involved, but are not yet sure how, please feel free to send us an <a href="alexander-fischer1801@t-online.de">email</a>. Some familiarity with either Python or econometrics will help, but you really don’t need to be a <code>numpy</code> core developer or have published in <a href="https://onlinelibrary.wiley.com/journal/14680262">Econometrica</a> =) We’d be more than happy to invest time to help you get started!</p>
-</section>
-<section id="contributors" class="level2">
-<h2 class="anchored" data-anchor-id="contributors">Contributors ✨</h2>
-<p>Thanks goes to these wonderful people:</p>
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-<tbody>
-<tr>
-<td align="center" valign="top" width="14.28%">
-<a href="https://github.com/styfenschaer"><img src="https://avatars.githubusercontent.com/u/79762922?v=4?s=100" width="100px;" alt="styfenschaer"><br><sub><b>styfenschaer</b></sub></a><br><a href="https://github.com/py-econometrics/pyfixest/commits?author=styfenschaer" title="Code">💻</a>
-</td>
-<td align="center" valign="top" width="14.28%">
-<a href="https://www.nkeleher.com/"><img src="https://avatars.githubusercontent.com/u/5607589?v=4?s=100" width="100px;" alt="Niall Keleher"><br><sub><b>Niall Keleher</b></sub></a><br><a href="#infra-NKeleher" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/py-econometrics/pyfixest/commits?author=NKeleher" title="Code">💻</a>
-</td>
-<td align="center" valign="top" width="14.28%">
-<a href="http://wenzhi-ding.com"><img src="https://avatars.githubusercontent.com/u/30380959?v=4?s=100" width="100px;" alt="Wenzhi Ding"><br><sub><b>Wenzhi Ding</b></sub></a><br><a href="https://github.com/py-econometrics/pyfixest/commits?author=Wenzhi-Ding" title="Code">💻</a>
-</td>
-<td align="center" valign="top" width="14.28%">
-<a href="https://apoorvalal.github.io/"><img src="https://avatars.githubusercontent.com/u/12086926?v=4?s=100" width="100px;" alt="Apoorva Lal"><br><sub><b>Apoorva Lal</b></sub></a><br><a href="https://github.com/py-econometrics/pyfixest/commits?author=apoorvalal" title="Code">💻</a> <a href="https://github.com/py-econometrics/pyfixest/issues?q=author%3Aapoorvalal" title="Bug reports">🐛</a>
-</td>
-<td align="center" valign="top" width="14.28%">
-<a href="https://juanitorduz.github.io"><img src="https://avatars.githubusercontent.com/u/22996444?v=4?s=100" width="100px;" alt="Juan Orduz"><br><sub><b>Juan Orduz</b></sub></a><br><a href="#infra-juanitorduz" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/py-econometrics/pyfixest/commits?author=juanitorduz" title="Code">💻</a>
-</td>
-<td align="center" valign="top" width="14.28%">
-<a href="https://py-econometrics.github.io/blog/"><img src="https://avatars.githubusercontent.com/u/19531450?v=4?s=100" width="100px;" alt="Alexander Fischer"><br><sub><b>Alexander Fischer</b></sub></a><br><a href="https://github.com/py-econometrics/pyfixest/commits?author=py-econometrics" title="Code">💻</a> <a href="#infra-py-econometrics" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a>
-</td>
-<td align="center" valign="top" width="14.28%">
-<a href="http://www.aeturrell.com"><img src="https://avatars.githubusercontent.com/u/11294320?v=4?s=100" width="100px;" alt="aeturrell"><br><sub><b>aeturrell</b></sub></a><br><a href="#tutorial-aeturrell" title="Tutorials">✅</a> <a href="https://github.com/py-econometrics/pyfixest/commits?author=aeturrell" title="Documentation">📖</a> <a href="#promotion-aeturrell" title="Promotion">📣</a>
-</td>
-</tr>
-</tbody>
-</table>
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-<p>This project follows the <a href="https://github.com/all-contributors/all-contributors">all-contributors</a> specification. Contributions of any kind welcome!</p>
+    
+  
+    
+  </div>
+  
 
 
-</section>
-</section>
+</header>
+
+
+<p><code>PyFixest</code> allows to run the fixed effects demeaning on the GPU via the <code>demeaner_backend</code> argument. To do so, you will have to install <code>jax</code> and <code>jaxblib</code>, for example by typing <code>pip install pyfixest[jax]</code>.</p>
+<p>We test two back-ends for the iterative alternating-projections component of the fixed-effects regression on an Nvidia A100 GPU with 40 GB VRAM (a GPU that one typically wouldn’t have installed to play graphics-intensive videogames on consumer hardware). <code>numba</code> benchmarks are run on a 12-core xeon CPU.</p>
+<p>The JAX backend exhibits major performance improvements <strong>on the GPU</strong> over numba in large problems.</p>
+<p><img src="figures/gpu_benchmarks.png" class="img-fluid"></p>
+<p>On the <strong>CPU</strong> instead, we find that <code>numba</code> outperforms the JAX backend. You can find details in the <a href="https://github.com/py-econometrics/pyfixest/tree/master/benchmarks">benchmark section</a> of the github repo.</p>
+
+
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
